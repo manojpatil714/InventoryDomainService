@@ -29,7 +29,7 @@ COPY . /app
 # Get forever
 RUN  npm install -g forever
 
-EXPOSE  8080
+EXPOSE  3001
 
 CMD ["node --version"]
 CMD ["npm --version"]
