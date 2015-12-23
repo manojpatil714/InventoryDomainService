@@ -1,0 +1,22 @@
+/**
+ * Created by bcp on 12/19/15.
+ */
+{
+  "eachWarehouse"
+  :
+  "SELECT wh.whse_cd, item.l2_cd, type.typ_desc, status.stat_desc, sum(stock.stk_brkup_qty) from inventory.stock_breakup stock inner join inventory.inventory_availability inv_avail on inv_avail.inv_avil_id = stock.inv_avail_id inner join inventory.sku_plu_map spmap on spmap.sku_plu_id = inv_avail.sku_plu_id inner join inventory.item item on item.item_id = spmap.item_id inner join inventory.inventory_type type on type.typ_id = inv_avail.typ_id inner join inventory.inventory_status status on status.stat_id = inv_avail.typ_id inner join location.warehouse wh on wh.whse_id = inv_avail.whse_id where item.l2_cd in ("
+  +
+  itemListString
+  +
+  ") group by wh.whse_cd, item.item_id, type.typ_desc, status.stat_desc",
+
+
+  "consolidated"
+  :
+  "SELECT item.l2_cd, type.typ_desc, status.stat_desc, sum(stock.stk_brkup_qty) from inventory.stock_breakup stock inner join inventory.inventory_availability inv_avail on inv_avail.inv_avil_id = stock.inv_avail_id inner join inventory.sku_plu_map spmap on spmap.sku_plu_id = inv_avail.sku_plu_id inner join inventory.item item on item.item_id = spmap.item_id inner join inventory.inventory_type type on type.typ_id = inv_avail.typ_id inner join inventory.inventory_status status on status.stat_id = inv_avail.typ_id inner join location.warehouse wh on wh.whse_id = inv_avail.whse_id where item.l2_cd in ("
+  +
+  itemListString
+  +
+  ") group by item.item_id, type.typ_desc, status.stat_desc"
+  ;
+}
